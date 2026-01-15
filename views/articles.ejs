@@ -7,31 +7,34 @@
 </head>
 <body>
 
-    <div class="container">
-        <h1>Articles</h1>
-        <p>Cette page accueillera bientôt nos futurs articles.</p>
+<div class="container">
+    <h1>Articles</h1>
 
-        <div class="articles">
+    <p>
+        Nos amoureux de la patate parlent ici de leur sujet préféré.
+        N'hésitez pas à faire de même !
+    </p>
+    <p>Connecté en tant que <strong><%= user.username %></strong></p>
 
+
+    <form action="/messages" method="POST" class="form">
+        <textarea name="content"
+                placeholder="Écris ton message ici..."
+                required></textarea>
+        <button type="submit" class="btn">Publier</button>
+    </form>
+    <!-- 🔹 AFFICHAGE DES MESSAGES -->
+    <div class="articles">
+        <% messages.forEach(message => { %>
             <div class="article">
-                <h2>Article à venir</h2>
-                <p>Contenu en cours de rédaction...</p>
+                <h3><%= message.username %></h3>
+                <p><%= message.content %></p>
             </div>
-
-            <div class="article">
-                <h2>Article à venir</h2>
-                <p>Contenu en cours de rédaction...</p>
-            </div>
-
-            <div class="article">
-                <h2>Article à venir</h2>
-                <p>Contenu en cours de rédaction...</p>
-            </div>
-
-        </div>
-
-        <a href="/" class="link">Retour à l'accueil</a>
+        <% }) %>
     </div>
+
+    <a href="/logout" class="link">Se déconnecter et revenir à l'accueil</a>
+</div>
 
 </body>
 </html>

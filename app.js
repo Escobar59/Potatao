@@ -1,10 +1,18 @@
 const express = require("express");
 const app = express();
-app.set('view engine', 'ejs');      // 👈 TRÈS IMPORTANT
+const session = require("express-session");
+app.use(session({
+    secret: "super-secret-key",
+    resave: false,
+    saveUninitialized: false
+}));
+require("dotenv").config();
+app.set('view engine', 'ejs'); 
 app.set('views', './views');    
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+
 
 app.get('/', (req, res) => {
     res.render('index');
@@ -12,9 +20,18 @@ app.get('/', (req, res) => {
 app.get('/login', (req, res) => {
     res.render('login');
 });
-app.get('/articles', (req, res) => {
-    res.render('articles');
+app.get('/register', (req, res) => {
+    res.render('register');
 });
+
+const db = require("./db/connection");
+
+const authRoutes = require("./routes/auth.routes");
+app.use("/", authRoutes);
+
+const messagesRoutes = require("./routes/messages.routes");
+app.use("/", messagesRoutes);
+
 
 
 

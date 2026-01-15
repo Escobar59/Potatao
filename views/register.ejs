@@ -8,23 +8,14 @@
 <body>
 
     <div class="container">
-        <p id="message"></p>
+        <h1>Inscription</h1>
 
-    <script>
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("success") === "1") {
-        document.getElementById("message").textContent = "Compte créé avec succès ! Connectez-vous.";
-    }
-    </script>
-    <br>
-        <h1>Connexion</h1>
-
-        <form action="/login" method="POST" class="form">
+        <form action="/register" method="POST" class="form">
             <input type="text" name="username" placeholder="Nom d'utilisateur" required>
             <input type="password" name="password" placeholder="Mot de passe" required>
 
             <button type="submit" class="btn">
-                Se connecter
+                Créer un compte
             </button>
         </form>
 
