@@ -8,6 +8,7 @@
 <body>
 
 <div class="container">
+    <a href="/logout" class="btn_red">Se déconnecter</a>
     <h1>Articles</h1>
 
     <p>
@@ -25,15 +26,17 @@
     </form>
     <!-- 🔹 AFFICHAGE DES MESSAGES -->
     <div class="articles">
-        <% messages.forEach(message => { %>
-            <div class="article">
-                <h3><%= message.username %></h3>
-                <p><%= message.content %></p>
-            </div>
-        <% }) %>
+<% messages.forEach(message => { %>
+    <div class="article">
+        <h3><%= message.username %></h3>
+        <p><%= message.content %></p>
+        <a class="link" href="/messages/edit/<%= message.id_message %>">Modifier</a>
+        <a class="link_delete" href="/messages/delete/<%= message.id_message %>">Supprimer</a>
     </div>
+<% }) %>
 
-    <a href="/logout" class="link">Se déconnecter et revenir à l'accueil</a>
+
+    </div>
 </div>
 
 </body>

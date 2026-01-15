@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier le message</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Modifier le message</h1>
+
+    <form action="/messages/edit/<%= message.id_message %>" method="POST">
+        <textarea name="content" required><%= message.content %></textarea>
+        <button type="submit">Enregistrer</button>
+    </form>
+
+    <a href="/articles">Retour aux articles</a>
+</div>
+
+</body>
+</html>

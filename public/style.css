@@ -3,11 +3,10 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f6f8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
+
 
 .container {
     background: white;
@@ -15,6 +14,8 @@ body {
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 40px auto;
 }
 
 .btn {
@@ -30,6 +31,21 @@ body {
 
 .btn:hover {
     background-color: #0056b3;
+}
+
+.btn_red {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #dc3545;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn_red:hover {
+    background-color: #a71d2a;
 }
 
 .form {
@@ -50,6 +66,13 @@ input {
     color: #007bff;
 }
 
+.link_delete {
+    display: block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: red;
+}
+
 
 .articles {
     margin-top: 20px;
@@ -64,4 +87,18 @@ input {
 
 .article h2 {
     margin-bottom: 5px;
+}
+
+.article p {
+    white-space: pre-wrap; 
+    word-wrap: break-word;
+}
+
+textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    resize: vertical;
+    box-sizing: border-box;
 }

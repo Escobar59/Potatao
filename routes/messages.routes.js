@@ -10,7 +10,7 @@ router.get("/articles", (req, res) => {
     }
 
     db.query(
-        `SELECT m.content, u.username
+        `SELECT m.content, u.username, m.id_message
          FROM message m
          JOIN user u ON m.id_user = u.id_user
          ORDER BY m.id_message DESC`,
@@ -55,5 +55,52 @@ router.post("/messages", (req, res) => {
         }
     );
 });
+
+// GET formulaire édition
+router.get("/messages/edit/:id", (req, res) => {
+    const messageId = req.params.id;
+
+    db.query(
+        "SELECT * FROM message WHERE id_message = ?",
+        [messageId],
+        (err, results) => {
+            if (err) return res.status(500).send("Erreur serveur");
+            if (results.length === 0) return res.send("Message introuvable");
+
+            res.render("edit_message", { message: results[0] });
+        }
+    );
+});
+
+// POST sauvegarde modification
+router.post("/messages/edit/:id", (req, res) => {
+    const messageId = req.params.id;
+    const newContent = req.body.content;
+
+    db.query(
+        "UPDATE message SET content = ? WHERE id_message = ?",
+        [newContent, messageId],
+        (err) => {
+            if (err) return res.status(500).send("Erreur serveur");
+            res.redirect("/articles");
+        }
+    );
+});
+
+// GET suppression
+router.get("/messages/delete/:id", (req, res) => {
+    const messageId = req.params.id;
+
+    db.query(
+        "DELETE FROM message WHERE id_message = ?",
+        [messageId],
+        (err) => {
+            if (err) return res.status(500).send("Erreur serveur");
+            res.redirect("/articles");
+        }
+    );
+});
+
+
 
 module.exports = router;
