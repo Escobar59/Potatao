@@ -49,11 +49,12 @@ Ou depuis GitHub Desktop, ```Add > Clone Repository > URL``` et collez l'URL ci-
 Dans la console MySQL, créez la base de données 
 ```sql
 CREATE DATABASE potatao;
-USE potatao
+USE potatao;
 ```
 Puis copiez/collez l'entièreté du fichier ```potatao.sql```
 Ensuite, modifiez le fichier ```.env``` pour votre utilisateur mysql et son mot de passe.
 
 3. **Lancer le site**
+
 Dans un terminal node, à la racine du projet, lancez ```node app.js```
 Allez sur l'URL générée, vous pouvez maintenant vous crééer un utilisateur, vous connecter, et utiliser le site!
