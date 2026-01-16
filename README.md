@@ -40,3 +40,7 @@ Les utilisateurs peuvent lire, écrire et commenter des avis, recettes, anecdote
 ```bash
 git clone https://github.com/Escobar59/Potatao.git
 cd Potatao
+```
+
+2. **Installer et remplir la base de données**
+Avec MySQL, créez la base de données ```CREATE DATABASE potatao;```
