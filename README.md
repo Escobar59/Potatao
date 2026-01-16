@@ -41,13 +41,15 @@ Les utilisateurs peuvent lire, écrire et commenter des avis, recettes, anecdote
 git clone https://github.com/Escobar59/Potatao.git
 cd Potatao
 ```
+
 Ou depuis GitHub Desktop, ```Add > Clone Repository > URL``` et collez l'URL ci-dessus.
 
 2. **Installer et remplir la base de données**
-Dans un terminal MySQL, créez la base de données 
+
+Dans la console MySQL, créez la base de données 
 ```sql
 CREATE DATABASE potatao;
-\u potatao
+USE potatao
 ```
 Puis copiez/collez l'entièreté du fichier ```potatao.sql```
 Ensuite, modifiez le fichier ```.env``` pour votre utilisateur mysql et son mot de passe.
