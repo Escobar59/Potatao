@@ -1,4 +1,5 @@
 # Potatao
+Groupe 10 : Cotar Clément et Larangé Samuel
 
 Potatao est un site communautaire dédié aux **fans de  tubercule**  
 Les utilisateurs peuvent lire, écrire et commenter des avis, recettes, anecdotes ou débats autour de la patate sous toutes ses formes : frites, purée, gratin, raclette (évidemment).
