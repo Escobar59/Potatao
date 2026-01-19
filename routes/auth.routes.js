@@ -1,24 +1,29 @@
-// routes/auth.routes.js
 const express = require("express");
-const router = express.Router();  // <-- IMPORTANT : créer le router
+const router = express.Router(); 
 const db = require("../db/connection");
 
 // Route POST pour inscription
 router.post("/register", async (req, res) => {
+
+    // Récupérer les données du formulaire
     const { username, password } = req.body;
 
     try {
 
+        // Insérer l'utilisateur dans la base de données
         db.query(
             "INSERT INTO user (username, password) VALUES (?, ?)",
             [username, password],
             (err, result) => {
                 if (err) {
                     if (err.code === "ER_DUP_ENTRY") {
+                        // Gestion de l'erreur de doublon
                         return res.send("Nom d'utilisateur déjà pris");
                     }
                     throw err;
                 }
+
+                // Inscription réussie, redirection page login
                 res.redirect("/login?success=1");
             }
         );
@@ -28,6 +33,7 @@ router.post("/register", async (req, res) => {
     }
 });
 
+// Route POST pour connexion
 router.post("/login", (req, res) => {
     const { username, password } = req.body;
 
@@ -42,25 +48,27 @@ router.post("/login", (req, res) => {
         async (err, results) => {
             if (err) throw err;
 
+            // Si aucun utilisateur trouvé
             if (results.length === 0) {
                 return res.send("Nom d'utilisateur ou mot de passe incorrect");
             }
 
             const user = results[0];
 
-            // Comparer le mot de passe avec bcrypt
+            // Comparer le mot de passe avec celui en base de données
             const match = password === user.password;
             if (!match) {
                 return res.send("Nom d'utilisateur ou mot de passe incorrect");
             }
 
+            // Initialiser la session utilisateur
             req.session.user = {
                 id: user.id_user,
                 username: user.username
             };
 
-            // 🔹 Connexion réussie
-            // Pour l'instant, on peut juste rediriger vers une "page d'accueil"
+            // Connexion réussie
+            // Rediriger vers la page des articles
             res.redirect("/articles"); 
         }
     );
@@ -68,13 +76,16 @@ router.post("/login", (req, res) => {
 
 // GET /logout
 router.get("/logout", (req, res) => {
+
+    // Détruire la session
     req.session.destroy(err => {
         if (err) {
             console.error(err);
             return res.status(500).send("Erreur lors de la déconnexion");
         }
-        // Redirige vers la page d'accueil ou login
-        res.redirect("/login");
+
+        // Redirige vers la page d'accueil
+        res.redirect("/index");
     });
 });
 
